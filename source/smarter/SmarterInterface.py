@@ -4619,7 +4619,7 @@ class SmarterInterface:
             self.waterLevel = v
             change = True
 
-        v = Smarter.raw_to_waterlevel_bit(message[2])
+        v = bool(Smarter.raw_to_waterlevel_bit(message[2]))
         if v != self.waterEnough:
             self.__trigger(Smarter.triggerWaterEnough,self.waterEnough,v)
             self.waterEnough = v
