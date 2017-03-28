@@ -5865,11 +5865,9 @@ class SmarterInterface:
         This also changes using beans instead of the filter
         Or using the grinder instead of pregrind
         """
-        try:
+        if not self.grind:
             self.coffee_beans()
-            self.coffee_strength(Smarter.CoffeeWeak)
-        except:
-            raise SmarterError(0,"Could not set to weak")
+        self.coffee_strength(Smarter.CoffeeWeak)
             
 
     def coffee_medium(self):
@@ -5879,7 +5877,8 @@ class SmarterInterface:
         This also changes using beans instead of the filter
         Or using the grinder instead of pregrind
         """
-        self.coffee_beans()
+        if not self.grind:
+            self.coffee_beans()
         self.coffee_strength(Smarter.CoffeeMedium)
 
 
@@ -5891,7 +5890,8 @@ class SmarterInterface:
         This also changes using beans instead of the filter
         Or using the grinder instead of pregrind
         """
-        self.coffee_beans()
+        if not self.grind:
+            self.coffee_beans()
         self.coffee_strength(Smarter.CoffeeStrong)
 
 
