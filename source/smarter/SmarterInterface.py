@@ -5727,7 +5727,9 @@ class SmarterInterface:
         """
         if self.fast or self.isCoffee:
             self.__send_command(Smarter.CommandCups,Smarter.cups_to_raw(cups))
-            self.cups = cups
+
+            if not self.events:
+                self.cups = cups
         else:
             raise SmarterError(CoffeeNoMachineCups,"You need a coffee machine to select the number of cups to brew")
 
@@ -5791,7 +5793,9 @@ class SmarterInterface:
         if  self.isCoffee:
             if not self.grind:
                 self.__send_command(Smarter.CommandGrinder)
-                self.grind = True
+
+                if not self.events:
+                    self.grind = True
             else:
                 raise SmarterError(CoffeeNoMachineGrinder,"Already beans")
         else:
@@ -5818,7 +5822,9 @@ class SmarterInterface:
                     self.__send_command(Smarter.CommandGrinder)
                 except Exception, e:
                     print str(e)
-                self.grind = False
+
+                if not self.events:
+                    self.grind = False
             else:
                 raise SmarterError(CoffeeNoMachineGrinder,"Already filter")
         else:
@@ -5833,7 +5839,9 @@ class SmarterInterface:
         """
         if self.fast or self.isCoffee:
             self.__send_command(Smarter.CommandStrength ,Smarter.strength_to_raw(strength))
-            self.strength = strength
+            
+            if not self.events:
+                self.strength = strength
         else:
             raise SmarterError(CoffeeNoMachineStrength,"You need a coffee machine to select the coffee strength")
 
